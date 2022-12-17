@@ -24,20 +24,20 @@ public class Money : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(timer<=0)
+        if (timer <= 0)
         {
             moneyText.text = "";
             timer = 100f;
         }
         timer -= Time.deltaTime;
-        
+
     }
 
     public void AddMoney(int amount)
     {
         if (amount < 0)
         {
-            DecreaseMoney(amount);
+            DecreaseMoney(-amount);
             return;
         }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
+    public AdsManager adsManager;
     public GameObject[] levelEffects;
     int maxLevel = 1;
     private void Awake()
@@ -12,6 +13,7 @@ public class LevelManager : MonoBehaviour
         if (maxLevel == 0)
         {
             maxLevel = 1;
+            adsManager = gameObject.GetComponent<AdsManager>();
         }
     }
     // Start is called before the first frame update
@@ -37,12 +39,19 @@ public class LevelManager : MonoBehaviour
             }
             //Show effects like fireworks
             //Play level end sound
+            Invoke("PlayAd", 3f);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
+    void PlayAd()
+    {
+        adsManager.PlayAd();
+    }
     public void LoadLatestLevel()
     {
         SceneManager.LoadScene(maxLevel);
     }
+
+
 }

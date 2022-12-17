@@ -99,9 +99,14 @@ Touch finger = Input.GetTouch(0);
                 }
                 else
                 {
-                    audioSource.PlayOneShot(hitClip);
+                    // audioSource.PlayOneShot(hitClip);
                 }
                 Debug.Log("Speed Added");
+            }
+            else if (colObject.type == CollisionObject.ObjectType.Obstacle)
+            {
+                speedBoost += colObject.value;
+                audioSource.PlayOneShot(hitClip);
             }
         }
     }

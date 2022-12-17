@@ -137,8 +137,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.3374051, y: 1, z: 2.9814968}
-  m_Center: {x: 0.0614205, y: 0, z: 0.9907484}
+  m_Size: {x: 1.3374051, y: 1, z: 1.8223057}
+  m_Center: {x: 0.0614205, y: 0, z: 1.570344}
 --- !u!114 &9128915600065686462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16d1dc5bcddc5a40a728ba2016e1e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textTime: 1
   valueText: {fileID: 9128915600747804503}
   moneyText: {fileID: 9128915600186958765}
   carPrice: 0f000000140000001400000014000000

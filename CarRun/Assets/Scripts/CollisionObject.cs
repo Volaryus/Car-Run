@@ -9,6 +9,7 @@ public class CollisionObject : MonoBehaviour
         Money,
         Speed,
         Gold,
+        Obstacle
     }
     public ObjectType type;
     public int value;
