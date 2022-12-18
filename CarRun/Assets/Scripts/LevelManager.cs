@@ -39,8 +39,14 @@ public class LevelManager : MonoBehaviour
             }
             //Show effects like fireworks
             //Play level end sound
-            Invoke("PlayAd", 3f);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            //other.gameObject.GetComponent<Player>().forwardSpeed = 0;
+            other.gameObject.GetComponent<Player>().enabled = false;
+            other.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            if (SceneManager.GetActiveScene().buildIndex % 3 == 2)
+            {
+                Invoke("PlayAd", 3f);
+            }
+            Invoke("LoadNextLevel", 3f);
         }
     }
 
@@ -51,6 +57,10 @@ public class LevelManager : MonoBehaviour
     public void LoadLatestLevel()
     {
         SceneManager.LoadScene(maxLevel);
+    }
+    public void LoadNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
 
