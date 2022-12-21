@@ -4,10 +4,9 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 public class AdsManager : MonoBehaviour, IUnityAdsListener
 {
-
-    public Transform playerTransform;
+    public int rewardType;
+    public int boostSpeed = 6;
     public GameObject player;
-    public GameObject deathPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,8 +14,9 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
         Advertisement.AddListener(this);
     }
 
-    public void PlayRewardedAd()
+    public void PlayRewardedAd(int type)
     {
+        rewardType = type;
         if (Advertisement.IsReady("Rewarded_Android"))
         {
             Debug.Log("A");
@@ -26,7 +26,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
 
     public void PlayAd()
     {
-        if(Advertisement.IsReady("Interstitial_Android"))
+        if (Advertisement.IsReady("Interstitial_Android"))
         {
             Advertisement.Show("Interstitial_Android");
         }
@@ -52,6 +52,14 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
         if (placementId == "Rewarded_Android" && showResult == ShowResult.Finished)
         {
             //Reward the player
+            if (rewardType == 0)
+            {
+                player.GetComponent<Money>().NextCar();
+            }
+            else if(rewardType==1)
+            {
+                player.GetComponent<Player>().speedBoost += boostSpeed;
+            }
             Debug.Log("Done");
         }
     }

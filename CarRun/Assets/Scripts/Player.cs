@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Vector2 moveVector;
-    int speedBoost;
+    public int speedBoost;
     AudioSource audioSource;
     public AudioClip moneyClip;
     public AudioClip speedUpClip;
@@ -32,6 +32,9 @@ public class Player : MonoBehaviour
 #if UNITY_EDITOR
         moveX = Input.GetAxisRaw("Horizontal");
 #else
+        if(Input.touchCount>0)
+        {
+
 Touch finger = Input.GetTouch(0);
  /*if (finger.deltaPosition.x > 25)
             {
@@ -42,28 +45,34 @@ Touch finger = Input.GetTouch(0);
                 transform.position = Vector3.Lerp(transform.position, new Vector3(-xLimit, 0, transform.position.z), horizontalSpeed * Time.deltaTime);
             }*/
 
-            if (finger.deltaPosition.x > 4)
+            if (finger.deltaPosition.x > 2)
             {
-                moveX=finger.deltaPosition.x/10;
+                moveX=finger.deltaPosition.x/8;
             }
-            else if (finger.deltaPosition.x < -4)
+            else if (finger.deltaPosition.x < -2)
             {
-                moveX=finger.deltaPosition.x/10;
+                moveX=finger.deltaPosition.x/8;
             }
         else
         {
-            moveVector.x = moveX;
+            moveX=0;
+           /* moveVector.x = moveX;
             moveVector = Vector2.Lerp(new Vector2(moveVector.x, 0), Vector2.zero, slowSpeed);
-            moveX = moveVector.x;
+            moveX = moveVector.x;*/
+        }
+        }
+        else{
+        moveX=0;
         }
 #endif
-        if (transform.position.x > xLimit)
+        //You can use transform instead of rb
+        if (rb.position.x > xLimit)
         {
-            transform.position = new Vector3(xLimit - 0.05f, transform.position.y, transform.position.z);
+            rb.position = new Vector3(xLimit - 0.05f, transform.position.y, transform.position.z);
         }
-        if (transform.position.x < -xLimit)
+        if (rb.position.x < -xLimit)
         {
-            transform.position = new Vector3(-xLimit + 0.05f, transform.position.y, transform.position.z);
+            rb.position = new Vector3(-xLimit + 0.05f, transform.position.y, transform.position.z);
         }
 
         rb.velocity = new Vector3(moveX * horizontalSpeed, 0, forwardSpeed + speedBoost);

@@ -35,6 +35,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 10.unity
     guid: d3a00b01de6ade94985148b611a850e6
+  - enabled: 1
+    path: Assets/Scenes/DemoEnd.unity
+    guid: 96bbe583012e70b4da98d4a721178aab
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 7106adf684e039a48ab21cf0dcf1913a,
       type: 2}

@@ -6,12 +6,15 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField]
     bool stopTime = true;
+    [SerializeField]
+    Player player;
     public GameObject startPanel;
     private void Awake()
     {
-        if(stopTime)
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        if (stopTime)
         {
-            Time.timeScale = 0;
+            player.enabled = false;
         }
     }
     // Start is called before the first frame update
@@ -23,12 +26,16 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.touchCount > 0)
+        {
+            StartLevel();
+        }
     }
 
     public void StartLevel()
     {
-        Time.timeScale = 1;
+        player.enabled = true;
         startPanel.SetActive(false);
+        this.enabled = false;
     }
 }

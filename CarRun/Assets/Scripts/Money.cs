@@ -91,4 +91,12 @@ public class Money : MonoBehaviour
     {
         moneyText.text = "";
     }
+
+    public void NextCar()
+    {
+        cars[count].SetActive(false);
+        count++;
+        player.forwardSpeed = speeds[count];
+        cars[count].SetActive(true);
+    }
 }
